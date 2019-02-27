@@ -1,5 +1,7 @@
 class BugsController < ApplicationController
   before_action :set_bug, only: [:show, :edit, :update, :destroy]
+  # before_action :require_login
+
 
   def index
     @bugs = Bug.all
