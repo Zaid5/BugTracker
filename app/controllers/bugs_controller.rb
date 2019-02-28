@@ -15,6 +15,7 @@ class BugsController < ApplicationController
   end
 
   def edit
+    # authorize @bug
   end
 
   def create
@@ -34,25 +35,26 @@ class BugsController < ApplicationController
       if @bug.update(bug_params)
         format.html { redirect_to @bug, notice: 'Bug was successfully updated.' }
       else
-        format.html { render :edit }
+        format.html { render :edit, notice: 'There was an error processing your request!' }
       end
     end
   end
 
   def destroy
+    # authorize @bug
     @bug.destroy
     respond_to do |format|
       format.html { redirect_to bugs_url, notice: 'Bug is deleted.' }
-      format.json { head :no_content }
     end
   end
 
   private
     def set_bug
       @bug = Bug.find(params[:id])
+      # authorize @bug
     end
 
     def bug_params
-      params.require(:bug).permit(:title, :description)
+      params.require(:bug).permit(:title, :description, :image, :status)
     end
 end

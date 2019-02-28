@@ -1,7 +1,8 @@
-<%= simple_form_for @bug, url: bugs_path do |f| %>
+<%= simple_form_for @bug do |f| %>
   <%= f.error_notification %>
 
   <%= f.input :title %>
   <%= f.input :description %>
+  <%= f.input :image, as: :file %>
   <%= f.button :submit, class: "btn-primary" %>
 <% end %>
