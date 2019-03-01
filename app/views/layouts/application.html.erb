@@ -8,11 +8,10 @@
     <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload' %>
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
-
   <body>
     <div id="nav">
       <% if current_user %>
-        <%= link_to "Edit Profile", edit_user_path(users_path) %>
+        <%= link_to "Edit Profile", edit_user_path(current_user) %>
         <%= link_to "Logout", :logout, method: :post %>
       <% else %>
         <%= link_to "Register", new_user_path %> |
@@ -23,6 +22,7 @@
      <!--  <p id="notice"><%= flash[:notice] %></p>
       <p id="alert"><%= flash[:alert] %></p> -->
     </div>
+    <%= render :partial => 'flash_messages', :flash => flash %>
     <%= yield %>
   </body>
 </html>

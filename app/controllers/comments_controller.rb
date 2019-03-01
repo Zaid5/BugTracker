@@ -20,5 +20,4 @@ class CommentsController < ApplicationController
 		 @comment.destroy
 		 redirect_to bug_path(@bug)
   end
-
 end
