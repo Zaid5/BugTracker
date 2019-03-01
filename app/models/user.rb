@@ -1,4 +1,7 @@
 class User < ApplicationRecord
+	
+	has_many :comments, dependent: :destroy
+	
 	authenticates_with_sorcery!
 
 	enum role: [:pm, :dev, :admin]

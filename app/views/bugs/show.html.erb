@@ -2,6 +2,7 @@
   <p id="notice"><%= notice %></p>
 
   <%= image_tag @bug.image.url(:main) %>
+  <%= image_tag @bug.document.url(:main) %>
 
   <p>
     <strong>Title:</strong>
@@ -12,6 +13,21 @@
     <strong>Description:</strong>
     <%= @bug.description %>
   </p>
+
+  <br>
+  
+  <p><h2><%= @bug.comments.count %>   Comments</h2></p>
+  
+  <br>
+  
+  <%= render @bug.comments %>
+
+  <br>
+
+  <h2>Add a Comment</h2>
+  <%= render 'comments/form' %>
+
+  <br>
 
   <%= link_to 'Edit', edit_bug_path(@bug) %> |
   <%= link_to 'Back', bugs_path %>
