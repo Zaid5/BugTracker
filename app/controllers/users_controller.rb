@@ -4,7 +4,7 @@ class UsersController < ApplicationController
 
 
   def index
-    @users = User.all
+    # @users = User.all
   end
 
   def show
@@ -45,7 +45,7 @@ class UsersController < ApplicationController
   def destroy
     @user.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, danger: 'User was successfully destroyed.' }
+      format.html { redirect_to users_url, danger: 'User was successfully deleted.' }
     end
   end
 

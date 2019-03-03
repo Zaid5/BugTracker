@@ -59,4 +59,5 @@ gem 'jquery-rails', '~> 4.3', '>= 4.3.3'
 gem 'pundit', '~> 1.1'
 gem "paperclip", "~> 6.0.0"
 gem 'toastr-rails'
-
+gem 'bootstrap-sass', '~> 3.4', '>= 3.4.1'
+gem 'autoprefixer-rails', '~> 9.4', '>= 9.4.9'

@@ -1,8 +1,6 @@
 <div class="col-sm-8" >
   <p id="notice"><%= notice %></p>
 
-  <%= image_tag @bug.image.url(:main) %>
-  <%= image_tag @bug.document.url(:main) %>
 
   <p>
     <strong>Title:</strong>
@@ -14,6 +12,8 @@
     <%= @bug.description %>
   </p>
 
+  <%= image_tag @bug.image.url(:main) %>
+  <%=  @bug.document %>
   <br>
   
   <p><h2><%= @bug.comments.count %>   Comments</h2></p>

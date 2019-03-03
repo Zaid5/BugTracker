@@ -1,9 +1,9 @@
 class User < ApplicationRecord
 	
 	has_many :comments, dependent: :destroy
-	
 	authenticates_with_sorcery!
-
+	# attr_accessor :email, :password, :password_confirmation
+	
 	enum role: [:pm, :dev, :admin]
 
 	  validates :password, length: { minimum: 3 }, if: -> { new_record? || changes[:crypted_password] }

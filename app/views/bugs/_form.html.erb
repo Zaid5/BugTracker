@@ -1,9 +1,15 @@
-<%= simple_form_for @bug do |f| %>
-  <%= f.error_notification %>
+<div class="container-fluid">
+	<div class="row">
+		<%= simple_form_for @bug do |f| %>
+		  <%= f.error_notification %>
 
-  <%= f.input :title %>
-  <%= f.input :description %>
-  <%= f.input :image, as: :file %>
-  <%= f.input :document, as: :file %>
-  <%= f.button :submit, class: "btn-primary" %>
-<% end %>
+		  <!-- <%= f.input :title %> -->
+		    <%= f.input :title, class: 'form-control', placeholder: 'Title' %>
+		  <!-- <%= f.input :description %> -->
+		    <%= f.input :description, class: 'form-control', rows: 15, placeholder: 'Description'%>
+			  <%= f.input :image, as: :file %>
+			  <%= f.input :document, as: :file %>
+		  <%= f.button :submit, class: "btn-primary" %>
+		<% end %>
+	</div>
+</div>

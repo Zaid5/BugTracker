@@ -3,8 +3,13 @@
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <script>
+      $(".dropdown-menu li a").click(function(){
+        
+        $(".btn:first-child").html($(this).text()+' <span class="caret"></span>');
+        
+      });
+    </script>
   </head>
     <body>
 
@@ -24,13 +29,12 @@
         <tbody>
           <% @bugs.each do |bug| %>
             <tr>
-              <td><%= bug.title %></td>
+              <td><%= link_to bug.title.upcase, bug %></td>
               <td><%= bug.description %></td>
               <td><%= image_tag bug.image.url(:thumb) %></td>
               <td><%= bug.document %></td>
-              <td><%= link_to 'Show', bug %></td>
               <td><%= link_to 'Edit', edit_bug_path(bug) %></td>
-              <td><%= link_to 'Delete Bug', bug, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <td><%= link_to 'Delete', bug, method: :delete, data: { confirm: 'Are you sure?' } %></td>
               <td class="dropdown">
                 <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Status
                 <span class="caret"></span></button>
@@ -47,7 +51,7 @@
 
       <br>
 
-      <%= link_to 'New Bug', new_bug_path %>
+      
 
     </body>
 </html>
