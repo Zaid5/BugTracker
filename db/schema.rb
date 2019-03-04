@@ -31,6 +31,16 @@ ActiveRecord::Schema.define(version: 2019_03_01_080617) do
     t.text "comment"
   end
 
+  create_table "comment", force: :cascade do |t|
+    t.text "content"
+    t.bigint "user_id"
+    t.bigint "bug_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bug_id"], name: "index_comment_on_bug_id"
+    t.index ["user_id"], name: "index_comment_on_user_id"
+  end
+
   create_table "comments", force: :cascade do |t|
     t.text "content"
     t.bigint "user_id"
@@ -39,6 +49,16 @@ ActiveRecord::Schema.define(version: 2019_03_01_080617) do
     t.datetime "updated_at", null: false
     t.index ["bug_id"], name: "index_comments_on_bug_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "commentss", force: :cascade do |t|
+    t.text "content"
+    t.bigint "user_id"
+    t.bigint "bug_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["bug_id"], name: "index_commentss_on_bug_id"
+    t.index ["user_id"], name: "index_commentss_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
