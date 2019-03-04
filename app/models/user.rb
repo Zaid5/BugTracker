@@ -1,6 +1,7 @@
 class User < ApplicationRecord
 	
 	has_many :comments, dependent: :destroy
+	has_many :bugs
 	authenticates_with_sorcery!
 	# attr_accessor :email, :password, :password_confirmation
 	
@@ -12,9 +13,16 @@ class User < ApplicationRecord
 
 	  validates :email, uniqueness: true
 
-	  after_initialize do
-	    if self.new_record?
-	      self.role ||= :dev
-	    end
+
+	  def admin?
+	  	role == "admin"
+	  end
+
+	  def pm?
+	  	role == "pm"
+	  end
+
+	  def dev?
+	  	role == "dev"
 	  end
 end

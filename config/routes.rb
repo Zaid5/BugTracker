@@ -8,5 +8,5 @@ Rails.application.routes.draw do
 	resources :bugs do	
 		resources :comments
 	end
-  root :to => 'bugs#index'
+  root :to => 'users#index'
 end

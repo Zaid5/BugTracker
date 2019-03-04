@@ -16,7 +16,9 @@
       <p id="notice"><%= notice %></p>
 
       <h1>Bugs</h1>
-
+      
+        <!-- <%= link_to 'Write a New Bug', new_bug_path %> -->
+        
       <table>
         <thead>
           <tr>
@@ -32,9 +34,9 @@
               <td><%= link_to bug.title.upcase, bug %></td>
               <td><%= bug.description %></td>
               <td><%= image_tag bug.image.url(:thumb) %></td>
-              <td><%= bug.document %></td>
-              <td><%= link_to 'Edit', edit_bug_path(bug) %></td>
-              <td><%= link_to 'Delete', bug, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              <td><%= "Files attached : #{bug.document}" %></td>
+              <td><%= link_to 'Edit', edit_bug_path(bug) if policy(Bug).edit? %></td>
+              <td><%= link_to 'Delete', bug, method: :delete, data: { confirm: "Are you sure to delete #{bug.title}?" } if policy(Bug).destroy?%></td>
               <td class="dropdown">
                 <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Status
                 <span class="caret"></span></button>

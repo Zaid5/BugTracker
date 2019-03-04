@@ -6,20 +6,40 @@ class BugPolicy < ApplicationPolicy
     @bug = bug
   end
 
-	def edit?
-	   user_who_can_access_bug
- 	end
+  def index?
+    restricted_access
+  end
 
+  def show?
+    restricted_access 
+  end
+
+  def create?
+    admin_access
+  end
+
+  def edit?
+    admin_access
+  end
+
+  def new?
+    admin_access
+  end
+  
   def update?
-    # user_who_can_access_bug
+    admin_access
   end
 
   def destroy?
-    user.role == 'admin' || record.user == user
-    user_who_can_access_bug
+    admin_access
   end
 
-  def user_who_can_access_bug
-      record.user_id == user.id
+  def admin_access
+    true if user.present? && (user.pm? || user.admin?)
   end
+
+  def restricted_access
+    true if user.present? && (user.pm? || user.admin? || user.dev?)
+  end
+
 end

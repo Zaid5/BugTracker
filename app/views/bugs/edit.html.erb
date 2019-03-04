@@ -3,7 +3,7 @@
 <%= simple_form_for @bug, url: bug_path(id: @bug.id), :html => {:multipart => true} do |f| %>
 
 	<%= render 'form' %>
-	<%= link_to 'Show'%>
-	<%= link_to 'Back'%>
+	<br>
+	<%= link_to 'Back', bugs_path%>
 
 <% end %>

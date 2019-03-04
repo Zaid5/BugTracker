@@ -1,10 +1,12 @@
-  class BugsController < ApplicationController
-  before_action :set_bug, only: [:show, :edit, :update, :destroy]
-  before_action :require_login
+class BugsController < ApplicationController
+before_action :set_bug, only: [:show, :edit, :update, :destroy]
+before_action :require_login
+after_action :verify_authorized
 
 
   def index
     @bugs = Bug.all
+    authorize @bugs
   end
 
   def show
@@ -12,18 +14,18 @@
 
   def new
     @bug = Bug.new
+    authorize @bug
   end
 
   def edit
-    # authorize @bug
   end
 
   def create
-    @bug = Bug.new(bug_params)
-
+    @bug = Bug.new(bug_params.merge user: current_user)
+    authorize @bug
     respond_to do |format|
       if @bug.save
-        format.html { redirect_to @bug, success: 'Bug is created.' }
+        format.html { redirect_to url: 'bug#index', success: 'Bug is created.' }
       else
         format.html { render :new }
       end
@@ -41,7 +43,6 @@
   end
 
   def destroy
-    # authorize @bug
     @bug.destroy
     respond_to do |format|
       format.html { redirect_to bugs_url, danger: 'Bug is deleted.' }
@@ -49,12 +50,12 @@
   end
 
   private
-    def set_bug
-      @bug = Bug.find(params[:id])
-      # authorize @bug
-    end
+  def set_bug
+    @bug = Bug.find(params[:id])
+    authorize @bug
+  end
 
-    def bug_params
-      params.require(:bug).permit(:title, :description, :image, :document, :status)
-    end
+  def bug_params
+    params.require(:bug).permit(:title, :description, :image, :document, :status)
+  end
 end
