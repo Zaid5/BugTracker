@@ -1,7 +1,7 @@
 <h1>Editing Bug</h1>
 
 <%= simple_form_for @bug, url: bug_path(id: @bug.id), :html => {:multipart => true} do |f| %>
-
+	
 	<%= render 'form' %>
 	<br>
 	<%= link_to 'Back', bugs_path%>

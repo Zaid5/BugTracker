@@ -8,38 +8,30 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
   <body>
-
-    <div id="main-container" class="container-fluid">
-
+    <div class="container-fluid">
       <div class="row">
-
-        <div class="col-xs-2">
-        
+        <div class="col-xs-2"> 
           <h3>Bug Tracker</h3>
           <br>
           <% if policy(Bug).new? %>
-            <%= link_to 'Write a New Bug', new_bug_path %>
+            <p><%= link_to 'Write a New Bug', new_bug_path %></p>
           <% end %>
 
           <% if policy(Bug).show? %>
             <p><%= link_to "View All Bugs", bugs_path %></p>
           <% end %>
           <br>
+          <p><%= link_to "Register", new_user_path %></p>
           <% if current_user %>
-            <%= link_to "Edit Profile", edit_user_path(current_user) %>
-            <%= link_to "Logout", :logout, method: :post %>
+            <p><%= link_to "Edit Profile", edit_user_path(current_user) %></p>
+            <p><%= link_to "Logout", :logout, method: :post %></p>
           <% else %>
-
-            <%= link_to "Register", new_user_path %> |
-            <%= link_to "Login", :login %>
+            <p><%= link_to "Login", :login %></p>
           <% end %>
         </div>
-        <div class="col-xs-10">
-          
+        <div class="col-xs-10">         
           <%= yield %>
-      
           <%= render :partial => 'flash_messages', :flash => flash %>
-          
         </div>
       </div>
     </div>

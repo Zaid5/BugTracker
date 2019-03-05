@@ -4,56 +4,46 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <script>
-      $(".dropdown-menu li a").click(function(){
-        
-        $(".btn:first-child").html($(this).text()+' <span class="caret"></span>');
-        
-      });
+      function startOnClick(){
+        var status = document.getElementById("status");
+        if (status.value=="ToDO") status.value = "Doing";
+        else (status.value = "Done");
+      }
+    </script>
+    <script>
+      function resumeOnClick(){
+        var resume = document.getElementById("resume");
+        if (resume.value=="Pause") resume.value = "Resume";
+        else resume.value = "Pause";
+      }
     </script>
   </head>
-    <body>
-
-      <p id="notice"><%= notice %></p>
-
-      <h1>Bugs</h1>
-      
-        <!-- <%= link_to 'Write a New Bug', new_bug_path %> -->
-        
-      <table>
-        <thead>
-          <tr>
-            <th>Bug Title</th>
-            <th>Bug Description</th>
-            <th colspan="3"></th>
-          </tr>
-        </thead>
-
-        <tbody>
+  <body>
+   
+    <div class="container-fluid">
+      <div class="row">
+        <h1>Bugs</h1>
+        <br>
+        <div class="col-xs-10">
           <% @bugs.each do |bug| %>
-            <tr>
-              <td><%= link_to bug.title.upcase, bug %></td>
-              <td><%= bug.description %></td>
-              <td><%= image_tag bug.image.url(:thumb) %></td>
-              <td><%= "Files attached : #{bug.document}" %></td>
-              <td><%= link_to 'Edit', edit_bug_path(bug) if policy(Bug).edit? %></td>
-              <td><%= link_to 'Delete', bug, method: :delete, data: { confirm: "Are you sure to delete #{bug.title}?" } if policy(Bug).destroy?%></td>
-              <td class="dropdown">
-                <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Status
-                <span class="caret"></span></button>
-                <ul class="dropdown-menu">
-                  <li><a href="#">ToDo</a></li>
-                  <li><a href="#">Doing</a></li>
-                  <li><a href="#">Done</a></li>
-                </ul>
-              </td>
-            </tr>
-          <% end %>
-        </tbody>
-      </table>
-
-      <br>
-
-      
-
-    </body>
+            <label><%= link_to bug.title.upcase, bug %></label>
+            <p><%= bug.description %></p>
+            <p><%= image_tag bug.image.url(:thumb) %></p>
+            <strong><%= "Files attached :" %></strong>
+            <%= link_to bug.document, bug.document.url %>
+            <p>
+              <input type="button" value="ToDO" id="status" onclick="startOnClick();">
+              <input type="button" value="Pause" id="resume" onclick="resumeOnClick();">
+            </p>
+            <p class="form-inline">
+              <div class="form-inline">
+                <%= link_to 'Edit', edit_bug_path(bug) if policy(Bug).edit? %>
+                <%= link_to 'Delete', bug, method: :delete, data: { confirm: "Are you sure to delete #{bug.title}?" } if policy(Bug).destroy?%>
+              </div>
+            </p>
+          <%end%>
+        </div>
+      </div>
+    </div>
+  </body>
 </html>
