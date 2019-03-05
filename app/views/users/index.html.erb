@@ -1,19 +1,16 @@
 <div class="container-fluid">
   <div class="row">
-    <div class="col-xs-10">
-      <p id="notice"><%= notice %></p>
-        <% if policy(Bug).destroy? %>
-          <h1> Registered Users</h1>
-            <% @users.each do |user| %>
-            <br>
-              <tr>
-                <p><%= user.email %></p>
-                  <p><%= link_to 'Edit User', edit_user_path(user) %></p>
-                  <td><%= link_to 'Delete User', user, method: :delete, data: { confirm: "Are you sure to delete #{user.email}?" } %></td>
-            <% end %>
-            <br>
-          </tr>
-        <% end %>
+    <div class="col-xs-6">
+      <% if policy(Bug).destroy? %>
+        <h1> Registered Users</h1>
+        <% @users.each do |user| %>
+          <br>
+          <p><%= user.email %></p>
+          <p><%= link_to 'Edit User', edit_user_path(user) %></p>
+          <p><%= link_to 'Delete User', user, method: :delete, data: { confirm: "Are you sure to delete #{user.email}?" } %>
+          </p>
+        <%end%>
+      <%end%>
       <br>
     </div>
   </div>

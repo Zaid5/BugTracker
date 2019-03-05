@@ -1,21 +1,11 @@
-<div class="container-fluid">
-	<div class="row">
-		<div class="col-xs-8">
-			<%= simple_form_for @bug do |f| %>
-			  <%= f.error_notification %>
+<%= simple_form_for @bug do |f| %>
+  <%= f.error_notification %>
 
-			    <%= f.input :title, class: 'form-control', placeholder: 'Title' %>
-			    <%= f.label :description %>
-			    <%= f.text_area :'description', class: 'form-control', rows: 10, placeholder: 'Description'%>
-				  <%= f.input :image, as: :file %>
-				  <%= f.input :document, as: :file %>
-			  <%= f.button :submit, class: "btn-primary" %>
-			<% end %>
-		</div>
-		<div class="col-xs-4">
-			<p><%= image_tag @bug.image.url(:main) %></p>
-			<strong> <%= "Files attached :" %> </strong>
-			<%= link_to @bug.document, @bug.document.url %>
-		</div>
-	</div>
-</div>
+    <%= f.input :title, class: 'form-control', placeholder: 'Title' %>
+    <%= f.label :description %>
+    <%= f.text_area :'description', class: 'form-control', rows: 10, placeholder: 'Description'%>
+	  <%= f.input :image, as: :file %>
+	  <%= f.input :document, as: :file %>
+  <%= f.button :submit, class: "btn-primary" %>
+<% end %>
+

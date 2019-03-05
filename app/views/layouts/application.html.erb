@@ -19,6 +19,7 @@
 
           <% if policy(Bug).show? %>
             <p><%= link_to "View All Bugs", bugs_path %></p>
+            <p><%= link_to "View All Users", users_path %></p>
           <% end %>
           <br>
           <p><%= link_to "Register", new_user_path %></p>

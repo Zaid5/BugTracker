@@ -1,5 +1,10 @@
 class ApplicationController < ActionController::Base
 	# before_action :require_login
+	rescue_from ActionController::RoutingError do |exception|
+	 logger.error 'Routing error occurred'
+	 render plain: '404 Not found', status: 404 
+	end
+	
 	add_flash_types :success, :danger, :info, :error
 	include Pundit
 	# after_action :verify_authorized

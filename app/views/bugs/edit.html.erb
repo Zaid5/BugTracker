@@ -1,9 +1,27 @@
-<h1>Editing Bug</h1>
-
-<%= simple_form_for @bug, url: bug_path(id: @bug.id), :html => {:multipart => true} do |f| %>
-	
-	<%= render 'form' %>
-	<br>
-	<%= link_to 'Back', bugs_path%>
-
-<% end %>
+<div class="container-fluid">
+	<h1>Editing Bug</h1>
+	<div>
+		<script>
+	    function startOnClick(){
+	      var status = document.getElementById("status");
+	      if (status.value=="ToDO") status.value = "Doing";
+	      else (status.value = "Done");
+	    }
+	  </script>
+	  <p><input type="button" value="ToDO" id="status" onclick="startOnClick();"></p>
+	</div>
+	<div class="row">
+		<div class="col-xs-8">
+			<%= simple_form_for @bug, url: bug_path(id: @bug.id), :html => {:multipart => true} do |f| %>
+				<%= render 'form' %>
+				<br>
+				<%= link_to 'Back', bugs_path%>
+			<% end %>
+		</div>
+		<div class="col-xs-4">
+			<p><%= image_tag @bug.image.url(:main) %></p>
+			<strong> <%= "Files attached :" %> </strong>
+			<%= link_to @bug.document, @bug.document.url %>
+		</div>
+	</div>
+</div>

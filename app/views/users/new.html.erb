@@ -1,5 +1,9 @@
+<div class="container-fluid">
 	<h1>Registration</h1>
-
-<%= render 'form', user: @user %>
-
-<%= link_to 'Back', users_path %>
+	<div class="row">
+		<div class="col-xs-4">
+			<%= render 'form', user: @user %>
+			<%= link_to 'Back', users_path %>
+		</div>
+	</div>
+</div>

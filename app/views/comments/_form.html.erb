@@ -1,6 +1,6 @@
 <%= simple_form_for ([@bug, @bug.comments.build]) do |f| %>
-
   <%= f.label :Comment %>
-  <%= f.input :content %>
+  <%= f.text_area :content, class: 'form-control' %>
   <%= f.button :submit, class: "btn-primary" %>
 <% end %>
+

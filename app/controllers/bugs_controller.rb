@@ -48,6 +48,10 @@ after_action :verify_authorized
       format.html { redirect_to bugs_url, danger: 'Bug is deleted.' }
     end
   end
+  
+  def catch_404
+    raise ActionController::RoutingError.new(params[:path])
+  end
 
   private
   def set_bug

@@ -9,4 +9,7 @@ Rails.application.routes.draw do
 		resources :comments
 	end
   root :to => 'users#index'
+
+  match "*path", to: "bugs#catch_404", via: :all
+
 end
