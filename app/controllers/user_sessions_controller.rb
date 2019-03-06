@@ -12,7 +12,7 @@ class UserSessionsController < ApplicationController
     user = login(params[:email], params[:password])
 
     if user
-      redirect_back_or_to :users, success: "Logged in as #{user.email}"
+      redirect_back_or_to :users, success: "Logged in as #{user.username}"
     else
       flash.now[:error] = 'Login failed'
       render :new
@@ -21,6 +21,6 @@ class UserSessionsController < ApplicationController
 
   def destroy
     logout
-    redirect_to(:users, success: 'Logged out!')
+    redirect_to(:users, success: "Logged out!")
   end
 end

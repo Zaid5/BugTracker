@@ -1,7 +1,10 @@
 <%= simple_form_for @bug do |f| %>
   <%= f.error_notification %>
-
+	
     <%= f.input :title, class: 'form-control', placeholder: 'Title' %>
+    <% options = options_from_collection_for_select(User.all, 'email', 'username') %>
+    <%= f.label :Assign_To %>
+    <%= f.select :assign,  options, {include_blank: 'none'}%>
     <%= f.label :description %>
     <%= f.text_area :'description', class: 'form-control', rows: 10, placeholder: 'Description'%>
 	  <%= f.input :image, as: :file %>

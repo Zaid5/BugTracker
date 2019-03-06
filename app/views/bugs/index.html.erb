@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css"> -->
     <script>
       function startOnClick(){
         var status = document.getElementById("status");
@@ -28,9 +28,15 @@
           <% @bugs.each do |bug| %>
             <label><%= link_to bug.title.upcase, bug %></label>
             <p><%= bug.description %></p>
+            <p>
+              <strong>Assigned to :</strong> 
+              <%= bug.assign %>
+            </p>
             <p><%= image_tag bug.image.url(:thumb) %></p>
-            <strong><%= "Files attached :" %></strong>
-            <%= link_to bug.document, bug.document.url %>
+            <p>
+              <strong><%= "Files attached :" %></strong>
+              <%= link_to bug.document, bug.document.url %>
+            </p>
             <p>
               <input type="button" value="ToDO" id="status" onclick="startOnClick();">
               <input type="button" value="Pause" id="resume" onclick="resumeOnClick();">

@@ -3,7 +3,11 @@
     <div class="col-xs-8" >
       <h2><%= @bug.title %></h2>
       <p> <%= @bug.description %></p>
-      <p><strong>Files attached:</strong></p>
+      <p>
+        <strong>Assigned to :</strong>
+        <%= @bug.assign %>
+      </p>
+      <p><strong>Files attached :</strong></p>
       <%= link_to @bug.document, @bug.document.url  %>
       <br>
       <br>
@@ -11,7 +15,6 @@
     <div class="col-xs-2" >
      <%= image_tag @bug.image.url(:main) %>
     </div>
-    
     <div class="col-xs-6">  
       <h2>Comments</h2>
       <br> 

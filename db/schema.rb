@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_03_05_095202) do
+ActiveRecord::Schema.define(version: 2019_03_06_102629) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -30,6 +30,7 @@ ActiveRecord::Schema.define(version: 2019_03_05_095202) do
     t.datetime "document_updated_at"
     t.integer "user_id"
     t.string "comment"
+    t.string "assign"
   end
 
   create_table "comment", force: :cascade do |t|
@@ -69,6 +70,7 @@ ActiveRecord::Schema.define(version: 2019_03_05_095202) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "role"
+    t.string "username"
     t.index ["email"], name: "index_users_on_email", unique: true
   end
 

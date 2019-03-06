@@ -60,6 +60,6 @@ after_action :verify_authorized
   end
 
   def bug_params
-    params.require(:bug).permit(:title, :description, :image, :document, :status)
+    params.require(:bug).permit(:title, :description, :image, :document, :assign)
   end
 end

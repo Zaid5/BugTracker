@@ -5,7 +5,7 @@ class ApplicationController < ActionController::Base
 	 render plain: '404 Not found', status: 404 
 	end
 	
-	add_flash_types :success, :danger, :info, :error
+	add_flash_types :success, :danger, :info, :warning, :error
 	include Pundit
 	# after_action :verify_authorized
 
@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
 
 
  def not_authenticated
-   redirect_to login_url, error: "First login to access this page."
+   redirect_to login_url, warning: "First login to access this page."
  end
 
 end
