@@ -11,7 +11,7 @@ class BugPolicy < ApplicationPolicy
   end
 
   def show?
-    restricted_access 
+    restricted_access
   end
 
   def create?
@@ -41,5 +41,4 @@ class BugPolicy < ApplicationPolicy
   def restricted_access
     true if user.present? && (user.pm? || user.admin? || user.dev?)
   end
-
 end

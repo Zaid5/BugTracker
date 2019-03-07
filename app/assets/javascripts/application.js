@@ -13,7 +13,7 @@
 //= require rails-ujs
 //= require turbolinks
 //= require bootstrap-sprockets
-//= require toastr.min
+//= require toastr
 //= require activestorage
 //= require cable
 //= require_tree .

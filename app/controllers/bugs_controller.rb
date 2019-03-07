@@ -23,9 +23,12 @@ after_action :verify_authorized
   def create
     @bug = Bug.new(bug_params.merge user: current_user)
     authorize @bug
+    # @user = User.find_by_username(params[:username])
+
     respond_to do |format|
       if @bug.save
-        format.html { redirect_to url: 'bug#index', success: 'Bug is created.' }
+        ApplicationMailer.mailer(@bug).deliver_now if @bug.assign.present?
+        format.html { redirect_to bugs_url, success: 'Bug is created.' }
       else
         format.html { render :new }
       end
@@ -35,6 +38,7 @@ after_action :verify_authorized
   def update
     respond_to do |format|
       if @bug.update(bug_params)
+        ApplicationMailer.mailer(@bug).deliver_now if @bug.assign.present?
         format.html { redirect_to @bug, info: 'Bug was successfully updated.' }
       else
         format.html { render :edit, notice: 'There was an error processing your request!' }
@@ -60,6 +64,6 @@ after_action :verify_authorized
   end
 
   def bug_params
-    params.require(:bug).permit(:title, :description, :image, :document, :assign)
+    params.require(:bug).permit(:title, :description, :image, :document, :assign, :username)
   end
 end
